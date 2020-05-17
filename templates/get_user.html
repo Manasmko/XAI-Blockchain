@@ -27,33 +27,36 @@
     </style>
      
 <body>
-
-    {% for i in range(len_block)%}
-        {% for j in range(len_user)%}
-            {% for k in range(len_all_user_instances) %}
-                {% if k == j and k == i %}
-                    <div class="row red darken-3 shadow">                
-                        <h5 style="color: white">Block Number: {{all_user_instances[k]}}</h5>
-                        <h6 style="color: white">Block Created on {{block_timestamps[k]}}</h6>
-                    </div>
-                        {% for item in user_all_details[k].keys()%}
-                            <table>
-                                <tr>
-                                    {% if item == "UserID"%}
-                                        <th style="color: rgb(216, 48, 48);">{{item}}</th>
-                                        <td>{{user_all_details[k][item]}}</td>
-                                    {% else %}
-                                        <th style="color: black;">{{item}}</th>
-                                        <td>{{user_all_details[k][item]}}</td>
-                                    {%endif%}
-                                </tr>
-                            </table>
-                        {%endfor%}
-                    
-                {%endif%}
+    {% if message != "User Not Found in any block"%}
+        {% for i in range(len_block)%}
+            {% for j in range(len_user)%}
+                {% for k in range(len_all_user_instances) %}
+                    {% if k == j and k == i %}
+                        <div class="row red darken-3 shadow">                
+                            <h5 style="color: white">Block Number: {{all_user_instances[k]}}</h5>
+                            <h6 style="color: white">Block Created on {{block_timestamps[k]}}</h6>
+                        </div>
+                            {% for item in user_all_details[k].keys()%}
+                                <table>
+                                    <tr>
+                                        {% if item == "UserID"%}
+                                            <th style="color: rgb(216, 48, 48);">{{item}}</th>
+                                            <td>{{user_all_details[k][item]}}</td>
+                                        {% else %}
+                                            <th style="color: black;">{{item}}</th>
+                                            <td>{{user_all_details[k][item]}}</td>
+                                        {%endif%}
+                                    </tr>
+                                </table>
+                            {%endfor%}
+                        
+                    {%endif%}
+                {% endfor %}
             {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {%else%}
+        <h5>{{message}}</h5>
+    {%endif%}
 </body>
 
 
